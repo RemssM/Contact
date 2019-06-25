@@ -4,6 +4,9 @@
 package Contact;
 
 import org.junit.Test;
+
+import Contact.Library;
+
 import static org.junit.Assert.*;
 
 public class LibraryTest {
