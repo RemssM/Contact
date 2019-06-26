@@ -1,20 +1,25 @@
-package Contact.data;
+package contact.application.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.io.Serializable;
 
-public class Mail {
+import javax.persistence.*;
+
+@Entity
+public class Mail implements Serializable {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    private Long idUser;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="person_fk")
+    private Person person;
+	
     private String mail;
 
     protected Mail() {}
 
-    public Mail(Long idUser, String mail) {
-        this.idUser = idUser;
+    public Mail(Person person, String mail) {
+        this.person = person;
         this.mail = mail;
     }
 
@@ -22,7 +27,7 @@ public class Mail {
     public String toString() {
         return String.format(
                 "Mail[id=%d, idUser='%s', Mail='%s']",
-                id, idUser, mail);
+                id, person, mail);
     }
 
 	public Long getId() {
@@ -33,12 +38,12 @@ public class Mail {
 		this.id = id;
 	}
 
-	public Long getIdUser() {
-		return idUser;
+	public Person getPerson() {
+		return person;
 	}
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	public String getMail() {

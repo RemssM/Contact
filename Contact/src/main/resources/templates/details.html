@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Spring Security Example </title>
+    </head>
+    <body>
+		
+		<form action="#" th:action="@{/details/}" th:object="${personEdit}" method="post">
+    		nom : 
+    		<textarea rows="1" style="resize:none" th:inline="text">[[${person.firstName}]]</textarea>
+    	    <br>
+    	    prenom : 
+    	    <textarea rows="1" style="resize:none" th:inline="text">[[${person.lastName}]]</textarea>
+    	    <br>
+    	    <br>
+    	    <br>
+    	    Les adresses : 	
+    	    <br>
+    	    <p th:text="${person.id}"/>
+    		<tr th:each="e : ${person.adresses}">
+    			 <textarea rows="1" style="resize:none" th:inline="text">[[${e.adress}]]</textarea>
+    			 <br>
+    		</tr>
+    		
+    		<br>
+    	    <br>
+    	    Les mails :
+    	    <br>
+    		<tr th:each="e : ${person.mails}">
+    			 <textarea rows="1" style="resize:none" th:inline="text">[[${e.mail}]]</textarea>
+    			 <br>
+    		</tr>
+    		
+    		<button type="submit">Submit</button>
+    		
+    	</form>
+    </body>
+</html>

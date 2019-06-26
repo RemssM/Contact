@@ -1,4 +1,4 @@
-package Contact.data;
+package contact.application.model;
 
 import org.springframework.data.repository.CrudRepository;
 

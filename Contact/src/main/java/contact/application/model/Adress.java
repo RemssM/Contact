@@ -1,15 +1,25 @@
-package Contact.data;
+package contact.application.model;
 
+import java.io.Serializable;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
-public class Adress {
+@Entity
+public class Adress implements Serializable {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String adress;
-
+    
+    @ManyToMany(mappedBy = "adresses", cascade=CascadeType.ALL)
+    private Collection<Person> persons;
+    
     protected Adress() {}
 
     public Adress(String adress) {
@@ -37,6 +47,14 @@ public class Adress {
 
 	public void setAdress(String adress) {
 		this.adress = adress;
+	}
+
+	public Collection<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(Collection<Person> persons) {
+		this.persons = persons;
 	}
     
     
